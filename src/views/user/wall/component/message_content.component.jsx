@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 
 /* Component */
-import CommentContent from "./../component/comment_content.component";
-import DeleteCommentModal from "./../component/delete_comment_modal.component";
+import CommentContent from      "./../component/comment_content.component";
+import DeleteCommentModal from  "./../component/delete_comment_modal.component";
 
 /* CSS */
 import "./message_content.component.scss";

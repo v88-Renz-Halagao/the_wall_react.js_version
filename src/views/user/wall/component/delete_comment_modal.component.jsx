@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 
 /* Plugins */
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Button from  "react-bootstrap/Button";
+import Modal from   "react-bootstrap/Modal";
 
 /* CSS */ 
 import "./delete_comment_modal.component.scss";

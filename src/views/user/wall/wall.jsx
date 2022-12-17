@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 
 /* Component */
-import Header from "./component/header.component";
-import CreateMessageModal from "./component/create_message_modal.component";
-import MessageContent from "./component/message_content.component";
-import DeleteMessageModal from "./component/delete_message_modal.component";
+import Header from              "./component/header.component";
+import CreateMessageModal from  "./component/create_message_modal.component";
+import MessageContent from      "./component/message_content.component";
+import DeleteMessageModal from  "./component/delete_message_modal.component";
 
 /* Prototype Data */
 import { messagesContent } from "./message_content_prototype_data";

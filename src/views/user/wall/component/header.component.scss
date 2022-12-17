@@ -1,0 +1,33 @@
+header{
+    background: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    nav.navbar{
+        color: #152c61;
+        display: flex;
+        margin-inline: auto;
+        max-width: 1440px;
+        padding: 37px 79px; 
+    }
+    a{
+        align-self: center;
+        text-decoration: none;
+    }
+    h1{
+        font: normal 500 26px/39px 'Poppins';
+        margin-right: auto;
+        a{
+            color: #152C61;
+        }
+    }
+    span{
+        align-self: center;
+        font: normal 300 16px/24px 'Poppins';
+        margin-right: 20px;
+    }
+    a:nth-child(3){
+        align-self: center;
+        font: normal 600 16px/24px 'Poppins';
+        color: #2c6bff;
+    }
+}

@@ -1,0 +1,155 @@
+li.message_item{
+    background: #FFFFFF;
+    border-radius: 6px;
+    border: 1px solid #DCE6FF;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 30px;
+    p{
+        color: #152C61;
+        font: normal 300 16px/24px 'Poppins';
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    ul.action_list{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px;
+        width: 100%;
+        li{
+            list-style: none;
+            margin-right: 30px;
+            button{
+                background-color: transparent !important;
+                border-radius: 0px !important;
+                border: none !important;
+                color: #707070 !important;
+                font: normal 400 16px/24px 'Poppins' !important;
+                margin: 0px !important;
+                padding: 0px !important;
+                text-align: left !important;
+                span.action_icon{
+                    display: inline-block;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                }
+            }
+            button.has_comment{
+                color: #2C6BFF;
+                span.action_icon{
+                    background: url("../../../../assets/images/group_2020.png") no-repeat -3px -36px !important;
+                    height: 18px;
+                    width: 18px;
+                }
+            }
+            button.comment_button{ 
+                span.action_icon{
+                    background: url("../../../../assets/images/group_2020.png") no-repeat -3px -6px;
+                    height: 18px;
+                    width: 18px;
+                }
+                span.comment_count{
+                    margin-right: 5px;
+                }    
+            }
+            button.edit_button{
+                color: #2C6BFF;
+                span.action_icon{
+                    background: url("../../../../assets/images/group_2020.png") no-repeat -31px -4px;
+                    height: 22px;
+                    vertical-align: top;
+                    width: 22px;
+                }    
+            }
+            button.delete_button{
+                span.action_icon{
+                    background: url("../../../../assets/images/group_2020.png") no-repeat -64px -5px;
+                    height: 19px;
+                    width: 16px;
+                }    
+            }
+        } 
+        li:last-child{
+            color: rgba(0, 0, 0, 0.6);
+            font: normal 400 16px 'Poppins';
+            margin-right: 30px;
+            span.user{
+                font: normal 600 16px 'Poppins'; 
+            }
+            span.action_icon{
+                background: url("../../../../assets/images/user_placeholder.png") no-repeat;
+                display: inline-block;
+                height: 24px;
+                margin-right: 10px;
+                vertical-align: top;
+                width: 24px;
+            } 
+        }
+    }
+    form.post_comment_form{
+        background: #FFFFFF;
+        border: 1px solid #DCE6FF;
+        border-radius: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin: 30px 0px 20px 0px;
+        padding: 30px 30px 20px 30px;
+        width: 100%;
+        textarea{
+            background: #f5f8ff;
+            border-radius: 6px;
+            border: 1px solid #dce6ff;
+            color: #152C61;
+            font: normal 300 16px/24px 'Poppins';
+            margin-bottom: 20px;
+            min-height: 84px;
+            padding: 6px 11px;
+            resize: none;
+            width: 100%;
+            &:focus{
+                outline: none; 
+            }
+        }
+        button.disable_button{    
+            background: rgba(44, 107, 255, 0.5) !important; 
+        }
+    }
+    form.edit_form{
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        width: 100%;
+        textarea{
+            background: #f5f8ff;
+            border-radius: 6px;
+            border: 1px solid #dce6ff;
+            color: #152C61;
+            font: normal 300 16px/24px 'Poppins';
+            margin-bottom: 15px;
+            min-height: 84px;
+            padding: 6px 11px;
+            resize: none;
+            width: 100%;
+            &:focus{
+                outline: none; 
+            }
+        }
+        button[type=submit]{
+             padding: 7px 26px !important; 
+        }
+        button[type=button]{
+            background-color: transparent !important;
+            font: normal 400 16px/24px 'Poppins' !important;
+            color: rgba(0, 0, 0, 0.6) !important;
+            padding: 7px 30px !important;
+        }
+    }
+    ul.comment_container_list{
+        width: 100%;
+        padding: 0px;
+    }
+}

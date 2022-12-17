@@ -1,0 +1,53 @@
+div#create_message_modal{
+    min-width: 937px;
+    div.modal-content{
+        background-color: #ffffff;
+        div.modal-header{
+            padding: 16px 16px 10px 16px;
+            border-bottom: none;
+        }
+        form{
+            h5{
+                color: #152C61;
+                font: normal 500 26px/39px 'Poppins';
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            textarea{
+                background: #f5f8ff;
+                border-radius: 6px;
+                border: 1px solid #dce6ff;
+                color: #152C61;
+                padding: 6px 11px;
+                resize: none;
+                width: 100%;
+                min-height: 185px;
+                &:focus{
+                    outline: none; 
+                }
+            }
+            div.modal-body{
+                padding: 0px 50px;
+            }
+            div.modal-footer{
+                display: flex;
+                border-top: 0px;
+                padding: 25px 50px 50px 50px;
+                button{
+                    padding: 7px 43px;
+                    border: none; 
+                    margin: 0px;
+                }
+                button.disable_button{
+                    background-color: rgba(44, 107, 255, 0.5) !important;
+                }
+                button[type=button]{
+                    background-color: transparent;
+                    color: rgba(0, 0, 0, 0.6);
+                    font: normal 400 16px/24px 'Poppins';
+                    padding: 7px 23px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+div#delete_message_modal{
+    min-width: 540px;
+    div.modal-content{
+        background-color: #ffffff;
+        div.modal-header{
+            padding: 16px 16px 14px 16px;
+            border-bottom: none;
+        }
+        form{
+            h5{
+                color: #152C61;
+                font: normal 500 26px/39px 'Poppins';
+                text-align: center;
+                margin-bottom: 32px;
+            }
+            div.modal-body{
+                padding: 0px 50px;
+                p{
+                    color: #152C61;
+                    font: normal 400 16px/24px 'Poppins';
+                    margin: 0px 0px 30px 0px;
+                    text-align: center; 
+                    padding: 0px;
+                }
+            }
+            div.modal-footer{
+                border-top: none;
+                display: flex;
+                justify-content: center;
+                padding: 0px 0px 60px 0px;
+                button{
+                    padding: 7px 39px;
+                    border: none; 
+                    margin: 0px;
+                }
+                button[type=button]{
+                    background-color: transparent;
+                    color: rgba(0, 0, 0, 0.6);
+                    font: normal 400 16px/24px 'Poppins';
+                    padding: 11px 75px 11px 75px;
+                }
+                button[type=submit]{
+                    padding: 11px 52px;
+                }
+            }
+        }
+    }
+}

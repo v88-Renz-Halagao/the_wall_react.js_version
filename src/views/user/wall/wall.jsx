@@ -57,8 +57,8 @@ class Wall extends Component {
 
     handleOnAddMessage = (message) => {
         this.setState(prevState => ({
-            messages_content: [...prevState.messages_content, message],
-            total_messages: this.state.messages_content.length+1,
+            messages_content: [message, ...prevState.messages_content],
+            total_messages: this.state.messages_content.length+1, 
             message_id: this.state.message_id+1, 
             is_show_create_modal: false
         })); 

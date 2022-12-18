@@ -32,13 +32,36 @@ class MessageContent extends Component {
         }
     }
 
-    toggleCommentForm = () => {
+    componentDidUpdate(prevProps){
+        if(this.props.messages.id !== prevProps.messages.id){
+            console.log(this.props.messages.id);
+            this.setState({
+                is_show_comment_form: false,
+                message_id: this.props.messages.id,
+                message_comments_content: this.props.messages.comments,
+                total_comment: this.props.messages.comments.length,
+            });
+        }
+    }
+
+    toggleCommentForm = (messages_id) => {
         this.setState({
+            message_id: messages_id,
             is_show_comment_form: !this.state.is_show_comment_form
         }); 
     }
 
-    toggleEditForm = () => {
+    showEditForm = (messages_id) => {
+        this.setState({
+            is_show_edit_form: !this.state.is_show_edit_form,
+            update_message: {
+                ...this.state.update_message, 
+                id: messages_id
+            }
+        });
+    }
+
+    hideEditForm = () => {
         this.setState({
             is_show_edit_form: !this.state.is_show_edit_form
         });
@@ -94,7 +117,7 @@ class MessageContent extends Component {
 
     handleOnEditFormSubmit = (event) => {
         event.preventDefault(); 
-        this.toggleEditForm();
+        this.hideEditForm(); 
         this.props.handleOnUpdateMessage(this.state.update_message); 
     }
 
@@ -135,15 +158,15 @@ class MessageContent extends Component {
                         <p>{messages.message}</p>
                         <ul className="action_list">
                             <li>
-                                <button className={`comment_button ${(total_comment !== 0) ? "has_comment" : "" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(event.target)}>
+                                <button className={`comment_button ${(total_comment !== 0) ? "has_comment" : "" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(messages.id)}>
                                     <span className="action_icon"></span>
                                     <span className="comment_count">{total_comment}</span>
                                     Comment
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => this.toggleEditForm()} className="edit_button" type="button">
-                                    <span className="action_icon"></span>
+                                <button onClick={() => this.showEditForm(messages.id)} className="edit_button" type="button">
+                                    <span className="action_icon"></span> 
                                     <span></span>
                                     Edit
                                 </button>
@@ -166,7 +189,7 @@ class MessageContent extends Component {
                     <form className="edit_form" onSubmit={this.handleOnEditFormSubmit}>
                         <textarea onChange={(event) => this.handleEditFormOnChange(event.target)} name="edit_textarea" defaultValue={messages.message}></textarea>
                         <button type="submit">Update Message</button>
-                        <button onClick={() => this.toggleEditForm()} type="button">Cancel</button>
+                        <button onClick={() => this.hideEditForm()} type="button">Cancel</button>
                     </form>
                 }
                 { (is_show_comment_form) &&
@@ -177,7 +200,7 @@ class MessageContent extends Component {
                 }
                 { (is_show_comment_form && total_comment !== 0) &&
                     <ul className="comment_container_list">
-                        {message_comments_content.map((comment) => (
+                        {message_comments_content.reverse().map((comment) => (
                             <CommentContent
                                 comment={comment}
                                 showDeleteCommentModal={this.showDeleteCommentModal}

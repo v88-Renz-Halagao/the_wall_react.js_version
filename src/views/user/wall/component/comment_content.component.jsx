@@ -9,11 +9,20 @@ class CommentContent extends Component {
         super(props); 
 
         this.state = {
+            message_id: props.message_id,
             is_show_edit_comment_form: false,
             update_comment: {
                 id: null,
                 comment: ""
             },
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.message_id !== prevProps.message_id){
+            this.setState({
+                message_id: this.props.message_id
+            });
         }
     }
 
@@ -45,7 +54,7 @@ class CommentContent extends Component {
     handleOnEditCommentSubmit = (event) => {
         event.preventDefault(); 
         this.hideEditForm();
-        this.props.handleOnUpdateComment(this.state.update_comment);   
+        this.props.handleOnUpdateComment(this.state.update_comment, this.state.message_id);   
     }
 
     render() {

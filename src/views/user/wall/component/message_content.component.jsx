@@ -14,7 +14,6 @@ class MessageContent extends Component {
 
         this.state = {
             is_show_comment_form: false,
-            message_comments_content: props.messages.comments,
             message_id: props.messages.id,
             comment_id: 0,
             total_comment: props.messages.comments.length,
@@ -34,11 +33,10 @@ class MessageContent extends Component {
 
     componentDidUpdate(prevProps){
         if(this.props.messages.id !== prevProps.messages.id){
-            console.log(this.props.messages.id);
+            console.log(this.props.messages.comments);
             this.setState({
                 is_show_comment_form: false,
                 message_id: this.props.messages.id,
-                message_comments_content: this.props.messages.comments,
                 total_comment: this.props.messages.comments.length,
             });
         }
@@ -104,7 +102,6 @@ class MessageContent extends Component {
         let comment_details = this.state;
         this.props.handleOnAddComment(comment_details.comment_content, comment_details.message_id);
         this.setState(prevState => ({
-            message_comments_content: [...prevState.message_comments_content, comment_details.comment_content],
             comment_id: this.state.comment_id + 1,
             total_comment: this.state.total_comment+1,
             comment_content: {
@@ -121,27 +118,9 @@ class MessageContent extends Component {
         this.props.handleOnUpdateMessage(this.state.update_message); 
     }
 
-    handleOnUpdateComment = (updated_comment) => {
-        this.setState(prevState => ({
-            message_comments_content: prevState.message_comments_content.map((comment) => {
-                if(comment.id === parseInt(updated_comment.id)){
-                    return {
-                        ...comment,
-                        comment: updated_comment.comment
-                    }
-                }
-                else{
-                    return comment;
-                }
-            })
-        }));
-    } 
-
-    handleOnDeleteComment = (comment_id) => {
-        console.log(comment_id, this.state.message_id); 
-        const updated_comments = this.state.message_comments_content.filter(comment => comment.id !== parseInt(comment_id));
+    handleOnDeleteComment = (comment_id) => { 
+        this.props.handleOnDeleteCommentOfMessage(comment_id, this.state.message_id); 
         this.setState({
-            message_comments_content: updated_comments,
             delete_comment_by_id: 0,
             total_comment: this.state.total_comment-1,
             is_show_delete_comment_modal: false
@@ -149,8 +128,8 @@ class MessageContent extends Component {
     }
 
     render() {
-        let {messages, showDeleteMessageModal} = this.props; 
-        let {is_show_comment_form, message_comments_content, total_comment, comment_content, is_show_edit_form, is_show_delete_comment_modal, delete_comment_by_id} = this.state;  
+        let {messages, showDeleteMessageModal, handleOnUpdateComment} = this.props; 
+        let {is_show_comment_form, total_comment, comment_content, is_show_edit_form, is_show_delete_comment_modal, delete_comment_by_id} = this.state;  
         return (
            <li className="message_item" id={messages.id}>
                 { (is_show_edit_form === false) &&
@@ -200,11 +179,12 @@ class MessageContent extends Component {
                 }
                 { (is_show_comment_form && total_comment !== 0) &&
                     <ul className="comment_container_list">
-                        {message_comments_content.reverse().map((comment) => (
-                            <CommentContent
+                        {messages.comments.map((comment) => (
+                            <CommentContent 
+                                message_id = {messages.id}
                                 comment={comment}
                                 showDeleteCommentModal={this.showDeleteCommentModal}
-                                handleOnUpdateComment={this.handleOnUpdateComment}>
+                                handleOnUpdateComment={handleOnUpdateComment}>
                             </CommentContent>
                         ))}
                     </ul>

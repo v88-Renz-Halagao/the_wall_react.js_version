@@ -8,6 +8,13 @@ import Modal from   "react-bootstrap/Modal";
 /* CSS */ 
 import "./delete_comment_modal.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /message_content.component.jsx <br>
+* All methods are related into deleting comment<br>
+* Last Updated Date: December 20, 2022
+*/
 class DeleteCommentModal extends Component {
     constructor(props){
         super(props);
@@ -25,6 +32,15 @@ class DeleteCommentModal extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will submits deleting of comments form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnFormSubmit = (event) => {
         event.preventDefault();
         this.props.handleOnDeleteComment(this.state.delete_comment_by_id);

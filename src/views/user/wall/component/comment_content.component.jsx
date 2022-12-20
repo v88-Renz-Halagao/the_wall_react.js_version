@@ -4,6 +4,13 @@ import React, { Component } from "react";
 /* CSS */
 import "./comment_content.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /message_content.component.jsx <br>
+* All methods are related to comment content<br>
+* Last Updated Date: December 20, 2022
+*/
 class CommentContent extends Component {
     constructor(props){
         super(props); 
@@ -26,6 +33,15 @@ class CommentContent extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will show edit form, and set the comment id and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} comment_id - comment id.
+    * @author Renz
+    */
     showEditForm = (comment_id) => {
         this.setState({
             is_show_edit_comment_form: !this.state.is_show_edit_comment_form,
@@ -36,6 +52,15 @@ class CommentContent extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will handle the textarea change on editing a comment, updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} textarea_edit - Require input value
+    * @author Renz
+    */
     handleEditCommentOnChange = (textarea_edit) => {
         this.setState({
             update_comment: {
@@ -45,6 +70,15 @@ class CommentContent extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will submits edit comment form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnEditCommentSubmit = (event) => {
         event.preventDefault(); 
         this.setState({is_show_edit_comment_form: !this.state.is_show_edit_comment_form})

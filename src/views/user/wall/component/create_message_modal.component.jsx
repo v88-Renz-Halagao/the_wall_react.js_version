@@ -8,6 +8,13 @@ import Modal from   "react-bootstrap/Modal";
 /* CSS */
 import "./create_message_modal.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /wall.jsx <br>
+* All methods are related into creating message<br>
+* Last Updated Date: December 20, 2022
+*/
 class CreateMessageModal extends Component {
     constructor(props){
         super(props)
@@ -21,6 +28,15 @@ class CreateMessageModal extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will handle the textarea change, updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} textarea - Require input value
+    * @author Renz
+    */
     handleTextareaOnChange = (textarea) => {
         this.setState({
             message_content: {
@@ -31,6 +47,14 @@ class CreateMessageModal extends Component {
         })
     }
 
+    /**
+    * DOCU: This function will reset the message content and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @author Renz
+    */
     resetCreateMessageForm = () => {
         this.setState({
             message_content: {
@@ -41,12 +65,29 @@ class CreateMessageModal extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will submits creating of message form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnFormSubmit = (event) => {
         event.preventDefault();
         this.props.handleOnAddMessage(this.state.message_content);
         this.resetCreateMessageForm();
     }
     
+    /**
+    * DOCU: This function will toggle the create message modal and reset the textarea form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @author Renz
+    */
     closeCreateModal = () =>{
         this.props.toggleShowModal();
         this.resetCreateMessageForm();

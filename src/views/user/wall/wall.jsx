@@ -40,6 +40,15 @@ class Wall extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will show delete message, sets the id of message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} message - message id.
+    * @author Renz
+    */
     showDeleteMessageModal = (message) => {
         this.setState({
             is_show_delete_message_modal: true,
@@ -47,6 +56,15 @@ class Wall extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will add message, sets the id of message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} message - message data.
+    * @author Renz
+    */
     handleOnAddMessage = (message) => {
         this.setState(prevState => ({
             messages_content: [message, ...prevState.messages_content],
@@ -56,6 +74,15 @@ class Wall extends Component {
         })); 
     }
 
+    /**
+    * DOCU: This function will update message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} updated_message - updated message data.
+    * @author Renz
+    */
     handleOnUpdateMessage = (updated_message) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
@@ -72,6 +99,15 @@ class Wall extends Component {
         }));
     }
 
+    /**
+    * DOCU: This function will delete message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} message_id - message id.
+    * @author Renz
+    */
     handleOnDeleteMessage = (message_id) => {
         const updated_messages = this.state.messages_content.filter(message => message.id !== message_id);
         this.setState({
@@ -82,6 +118,16 @@ class Wall extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will add comment from a message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} comment - comment data.
+    * @param {integer} message_id - message id.
+    * @author Renz
+    */
     handleOnAddComment = (comment, message_id) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
@@ -98,6 +144,16 @@ class Wall extends Component {
         }));
     }
 
+    /**
+    * DOCU: This function will delete comment from a message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} comment_id - comment id.
+    * @param {integer} message_id - message id.
+    * @author Renz
+    */
     handleOnDeleteCommentOfMessage = (comment_id, message_id) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
@@ -115,6 +171,16 @@ class Wall extends Component {
         }));
     }
 
+    /**
+    * DOCU: This function will update comment from a message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} updated_comment - updated comment data.
+    * @param {integer} message_id - message id.
+    * @author Renz
+    */
     handleOnUpdateComment = (updated_comment, message_id) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {

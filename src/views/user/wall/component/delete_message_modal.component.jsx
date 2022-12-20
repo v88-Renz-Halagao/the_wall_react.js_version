@@ -8,6 +8,13 @@ import Modal from   "react-bootstrap/Modal";
 /* CSS */ 
 import "./delete_message_modal.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /wall.jsx <br>
+* All methods are related into deleting message<br>
+* Last Updated Date: December 20, 2022
+*/
 class DeleteMessageModal extends Component {
     constructor(props){
         super(props);
@@ -25,6 +32,15 @@ class DeleteMessageModal extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will submits deleting of message form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnFormSubmit = (event) => {
         event.preventDefault();
         this.props.handleOnDeleteMessage(this.state.delete_message_by_id);

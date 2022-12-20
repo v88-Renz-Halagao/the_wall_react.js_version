@@ -38,7 +38,7 @@ class Login extends Component {
     * Last Updated Date: December 20, 2022
     * @function
     * @memberOf Login page
-    * @param {object} input ="" - Require input value
+    * @param {object} input - Require input value
     * @author Renz
     */
     handleInputChange = (input) => {
@@ -56,7 +56,7 @@ class Login extends Component {
     * Last Updated Date: December 20, 2022
     * @function
     * @memberOf Login page
-    * @param {object} event ="" - Require form event.
+    * @param {object} event - Require form event.
     * @author Renz
     */
     handleOnLoginSubmit = (event) => {

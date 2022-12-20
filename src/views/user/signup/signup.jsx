@@ -61,8 +61,8 @@ class Signup extends Component {
     * Last Updated Date: December 20, 2022
     * @function
     * @memberOf Signup page
-    * @param {string} input_name ="" - Require input name
-    * @param {string} input_error ="" - Require input error
+    * @param {string} input_name - Require input name
+    * @param {string} input_error - Require input error
     * @author Renz
     */
     handleInputError = (input_name, input_error) => {
@@ -95,9 +95,10 @@ class Signup extends Component {
     * Last Updated Date: December 20, 2022
     * @function
     * @memberOf Signup page
-    * @param {object} event ="" - Require form event.
+    * @param {object} event - Require form event.
     * @author Renz
     */
+    /* NEED TO REDO THIS */
     handleOnSignupSubmit = (event) => {
         event.preventDefault();
         let {email_format, signup_input} = this.state;

@@ -8,6 +8,13 @@ import Navbar from "react-bootstrap/Navbar";
 /* CSS */
 import "./header.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /Wall.jsx <br>
+* This component will show the header.<br>
+* Last Updated Date: December 20, 2022
+*/
 class Wall extends Component {
     render() { 
         return (

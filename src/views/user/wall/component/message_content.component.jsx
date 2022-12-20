@@ -11,6 +11,13 @@ import DeleteCommentModal from  "./../component/delete_comment_modal.component";
 /* CSS */
 import "./message_content.component.scss";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /wall.jsx <br>
+* All methods are related to message content<br>
+* Last Updated Date: December 20, 2022
+*/
 class MessageContent extends Component {
     constructor(props){
         super(props); 
@@ -45,6 +52,15 @@ class MessageContent extends Component {
         }
     }
 
+    /**
+    * DOCU: This function will toggle comment form, sets the id of message and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} messages_id - message id.
+    * @author Renz
+    */
     toggleCommentForm = (messages_id) => {
         this.setState({
             message_id: messages_id,
@@ -52,6 +68,15 @@ class MessageContent extends Component {
         }); 
     }
 
+    /**
+    * DOCU: This function will show edit form, and set the message id and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} messages_id - message id.
+    * @author Renz
+    */
     showEditForm = (messages_id) => {
         this.setState({
             is_show_edit_form: !this.state.is_show_edit_form,
@@ -62,6 +87,15 @@ class MessageContent extends Component {
         });
     } 
 
+    /**
+    * DOCU: This function will show delete comment modal, set the comment id and updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} comment - comment data.
+    * @author Renz
+    */
     showDeleteCommentModal = (comment) => {
         this.setState({
             is_show_delete_comment_modal: true,
@@ -69,6 +103,15 @@ class MessageContent extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will handle the textarea change on adding comment to a message, updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} textarea - Require input value
+    * @author Renz
+    */
     handleTextareaOnChange = (textarea) => {
         this.setState({
             comment_content: {
@@ -79,6 +122,15 @@ class MessageContent extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will handle the textarea change on editing a message, updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} textarea_edit - Require input value
+    * @author Renz
+    */
     handleEditFormOnChange = (textarea_edit) => {
         this.setState({
             update_message: {
@@ -88,6 +140,15 @@ class MessageContent extends Component {
         });
     }
 
+    /**
+    * DOCU: This function will submits comments form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnFormSubmit = (event) => {
         event.preventDefault();
         let comment_details = this.state;
@@ -103,12 +164,30 @@ class MessageContent extends Component {
         }));
     }
 
+    /**
+    * DOCU: This function will submits edit message form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {object} event - Require form event.
+    * @author Renz
+    */
     handleOnEditFormSubmit = (event) => {
         event.preventDefault(); 
         this.setState({is_show_edit_form: !this.state.is_show_edit_form})
         this.props.handleOnUpdateMessage(this.state.update_message); 
     }
 
+    /**
+    * DOCU: This function will handle the deleting of comment of a message.<br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Wall page
+    * @param {integer} comment_id - comment id.
+    * @author Renz
+    */
     handleOnDeleteComment = (comment_id) => { 
         this.props.handleOnDeleteCommentOfMessage(comment_id, this.state.message_id); 
         this.setState({

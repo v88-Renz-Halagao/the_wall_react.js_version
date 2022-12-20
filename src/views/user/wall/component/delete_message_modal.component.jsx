@@ -31,12 +31,12 @@ class DeleteMessageModal extends Component {
     }
 
     render() {
-        let {is_show, closeDeleteMessageModal} = this.props;
-        let {delete_message_by_id} = this.state;  
+        let {is_show, toggleShowModal} = this.props;
+        let {delete_message_by_id} = this.state;   
         return (
             <Modal 
                 show={is_show}
-                onHide={closeDeleteMessageModal}
+                onHide={toggleShowModal}
                 id="delete_message_modal"
                 centered
             >
@@ -49,7 +49,7 @@ class DeleteMessageModal extends Component {
                     <input type="hidden" name="message_item" value={delete_message_by_id}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="button" onClick={closeDeleteMessageModal}>Cancel</Button>
+                    <Button type="button" onClick={toggleShowModal}>Cancel</Button>
                     <Button type="submit">Yes, Remove it.</Button>
                 </Modal.Footer>
                 </form>

@@ -2,15 +2,19 @@
 import React, { Component } from "react";
 import { Link } from  "react-router-dom";
 
-/* Prototype Data */
-import { loginData } from "./login_prototype_data";
-
 /* CSS */
 import "./login.scss";
 
 /* Images */
 import Image_for_right_container from "../../../assets/images/Group_2018.png";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /layouts/user.layout.jsx <br>
+* This is class component is responsible for Login page. <br>
+* Last Updated Date: December 20, 2022
+*/
 class Login extends Component {
     constructor(props){
         super(props)
@@ -21,10 +25,22 @@ class Login extends Component {
                 email: null,
                 password: null
             },
-            login_data: loginData 
+            login_data: {
+                email: "test@gmail.com",
+                password: "12345"
+            } 
         }
     }
 
+    /**
+    * DOCU: This function will handle the input change, updates the state's value <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Login page
+    * @param {object} input ="" - Require input value
+    * @author Renz
+    */
     handleInputChange = (input) => {
         this.setState({
             login_input: {
@@ -34,15 +50,23 @@ class Login extends Component {
         })
     }
 
+    /**
+    * DOCU: This function will validate and submits login form <br>
+    * Triggered: render() <br>
+    * Last Updated Date: December 20, 2022
+    * @function
+    * @memberOf Login page
+    * @param {object} event ="" - Require form event.
+    * @author Renz
+    */
     handleOnLoginSubmit = (event) => {
         event.preventDefault();
-        let input = this.state.login_input;
-        let login_data = this.state.login_data;
-        if(input.email !== login_data.email && input.password !== login_data.password){
+        let {login_input, login_data} = this.state; 
+        if(login_input.email !== login_data.email || login_input.password !== login_data.password){
             this.setState({
                 login_error: true
             });
-        }
+        } 
         else{
             window.location.href="/wall";
         }
@@ -61,7 +85,7 @@ class Login extends Component {
                             type="email"
                             id="email"
                             name="email"
-                            className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
+                            className={`form-control ${ (login_error) ? "input_error" : "" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(login_error) &&
@@ -73,14 +97,14 @@ class Login extends Component {
                             type="password"
                             id="password"
                             name="password"
-                            className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
+                            className={`form-control ${ (login_error) ? "input_error" : "" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(login_error) &&
-                            <span className="error">Incorrrect Password</span>
+                            <span className="error">Incorrrect Password</span> 
                         }
                         <button type="submit">SIGN IN</button>
-                        <span>I don't have an account ? <Link to="/signup" >Sign up</Link></span>
+                        <p>I don't have an account ? <Link to="/signup" >Sign up</Link></p>
                     </form>
                 </div>
                 <div id="right_container">

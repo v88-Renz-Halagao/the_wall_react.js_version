@@ -1,6 +1,9 @@
 /* React */
 import React, { Component } from "react";
 
+/* Helpers */
+import { toggleShowModal, generateId } from '../../__helpers/helpers';
+
 /* Component */
 import Header from              "./component/header.component";
 import CreateMessageModal from  "./component/create_message_modal.component";
@@ -16,6 +19,13 @@ import "./wall.scss";
 /* Images */
 import Empty_post from "../../../assets/images/empty_post.png";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /layouts/user.layout.jsx <br>
+* This is class component is responsible for Wall page. <br>
+* Last Updated Date: December 20, 2022
+*/
 class Wall extends Component {
     constructor(props){
         super(props)
@@ -23,17 +33,11 @@ class Wall extends Component {
         this.state = {
             total_messages: 0,
             messages_content: messagesContent,
-            message_id: 0,
+            message_id: "m-"+generateId(),
             delete_message_by_id: 0,
             is_show_create_modal: false,
             is_show_delete_message_modal: false
         }
-    }
-
-    showCreateMessageModal = () => {
-        this.setState({
-            is_show_create_modal: true
-        });
     }
 
     showDeleteMessageModal = (message) => {
@@ -43,23 +47,11 @@ class Wall extends Component {
         });
     }
 
-    closeCreateMessageModal = () => {
-        this.setState({
-            is_show_create_modal: false
-        });
-    }
-
-    closeDeleteMessageModal = () => {
-        this.setState({
-            is_show_delete_message_modal: false
-        });
-    }
-
     handleOnAddMessage = (message) => {
         this.setState(prevState => ({
             messages_content: [message, ...prevState.messages_content],
             total_messages: this.state.messages_content.length+1, 
-            message_id: this.state.message_id+1, 
+            message_id: "m-"+generateId(), 
             is_show_create_modal: false
         })); 
     }
@@ -67,7 +59,7 @@ class Wall extends Component {
     handleOnUpdateMessage = (updated_message) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
-                if(message.id === parseInt(updated_message.id)){
+                if(message.id === updated_message.id){
                     return {
                         ...message,
                         message: updated_message.message
@@ -81,7 +73,7 @@ class Wall extends Component {
     }
 
     handleOnDeleteMessage = (message_id) => {
-        const updated_messages = this.state.messages_content.filter(message => message.id !== parseInt(message_id));
+        const updated_messages = this.state.messages_content.filter(message => message.id !== message_id);
         this.setState({
             messages_content: updated_messages,
             delete_message_by_id: 0,
@@ -93,7 +85,7 @@ class Wall extends Component {
     handleOnAddComment = (comment, message_id) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
-                if(message.id === parseInt(message_id)){
+                if(message.id === message_id){
                     return {
                         ...message,
                         comments: [comment, ...message.comments]
@@ -109,8 +101,8 @@ class Wall extends Component {
     handleOnDeleteCommentOfMessage = (comment_id, message_id) => {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
-                if(message.id === parseInt(message_id)){
-                    const updated_comments = message.comments.filter(comments => comments.id !== parseInt(comment_id));
+                if(message.id === message_id){
+                    const updated_comments = message.comments.filter(comments => comments.id !== comment_id);
                     return {
                         ...message,
                         comments: updated_comments
@@ -145,9 +137,9 @@ class Wall extends Component {
         return (
             <React.Fragment> 
                 <Header></Header> 
-                <section id="content_container">
+                <section id="content_container"> 
                     <h4><span id="total_messages">{total_messages}</span> messages arranged by latest posted</h4>
-                    <button onClick={this.showCreateMessageModal} id="create_message_modal_button">Create Message</button>
+                    <button onClick={() => this.setState({ is_show_create_modal: true })} id="create_message_modal_button">Create Message</button>
                     {(total_messages === 0) &&
                         <div id="empty_message_container">
                             <img src={Empty_post} alt="Empty Post" />
@@ -170,17 +162,17 @@ class Wall extends Component {
                     }
                     <CreateMessageModal
                         is_show={is_show_create_modal}
-                        closeCreateMessageModal={this.closeCreateMessageModal}
+                        toggleShowModal={() => toggleShowModal(this, "is_show_create_modal", false)}
                         handleOnAddMessage={this.handleOnAddMessage}
                         message_id={message_id}
                     ></CreateMessageModal>
                     <DeleteMessageModal
                         is_show={is_show_delete_message_modal}
-                        closeDeleteMessageModal={this.closeDeleteMessageModal}
+                        toggleShowModal={() => toggleShowModal(this, "is_show_delete_message_modal", false)} 
                         delete_message_by_id={delete_message_by_id}
                         handleOnDeleteMessage={this.handleOnDeleteMessage}
                     ></DeleteMessageModal>
-                </section>
+                </section> 
             </React.Fragment>
         );
     }

@@ -13,8 +13,8 @@ class Wall extends Component {
         return (
             <header>
                 <Navbar>
-                    <h1><Link to="/wall">The Wall Assingment</Link></h1>
-                    <span>Welcome, Renz Halagao</span>
+                    <h1><Link to="/wall">The Wall Assignment</Link></h1>
+                    <span>Welcome, Renz Halagao</span> 
                     <Link to="/">Logout</Link>
                 </Navbar>
             </header>

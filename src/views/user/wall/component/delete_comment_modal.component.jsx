@@ -31,12 +31,12 @@ class DeleteCommentModal extends Component {
     }
 
     render() {
-        let {is_show, closeDeleteCommentModal} = this.props;
+        let {is_show, toggleShowModal} = this.props;
         let {delete_comment_by_id} = this.state;  
         return (
             <Modal 
                 show={is_show}
-                onHide={closeDeleteCommentModal}
+                onHide={toggleShowModal}
                 id="delete_comment_modal"
                 centered
             >
@@ -49,7 +49,7 @@ class DeleteCommentModal extends Component {
                     <input type="hidden" name="comment_item" value={delete_comment_by_id}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="button" onClick={closeDeleteCommentModal}>Cancel</Button>
+                    <Button type="button" onClick={toggleShowModal}>Cancel</Button>
                     <Button type="submit">Yes, Remove it.</Button>
                 </Modal.Footer>
                 </form>

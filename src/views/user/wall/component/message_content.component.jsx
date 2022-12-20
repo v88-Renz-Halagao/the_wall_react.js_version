@@ -1,6 +1,9 @@
 /* React */
 import React, { Component } from "react";
 
+/* Helpers */
+import { toggleShowModal, generateId } from './../../../__helpers/helpers';
+
 /* Component */
 import CommentContent from      "./../component/comment_content.component";
 import DeleteCommentModal from  "./../component/delete_comment_modal.component";
@@ -15,7 +18,7 @@ class MessageContent extends Component {
         this.state = {
             is_show_comment_form: false,
             message_id: props.messages.id,
-            comment_id: 0,
+            comment_id: "c-"+generateId(),
             total_comment: props.messages.comments.length,
             comment_content: {
                 id: null,
@@ -57,24 +60,12 @@ class MessageContent extends Component {
                 id: messages_id
             }
         });
-    }
-
-    hideEditForm = () => {
-        this.setState({
-            is_show_edit_form: !this.state.is_show_edit_form
-        });
-    }
+    } 
 
     showDeleteCommentModal = (comment) => {
         this.setState({
             is_show_delete_comment_modal: true,
             delete_comment_by_id: comment.id
-        });
-    }
-
-    closeDeleteCommentModal = () => {
-        this.setState({
-            is_show_delete_comment_modal: false
         });
     }
 
@@ -102,7 +93,7 @@ class MessageContent extends Component {
         let comment_details = this.state;
         this.props.handleOnAddComment(comment_details.comment_content, comment_details.message_id);
         this.setState(prevState => ({
-            comment_id: this.state.comment_id + 1,
+            comment_id: "c-"+generateId(),
             total_comment: this.state.total_comment+1,
             comment_content: {
                 ...this.state.comment_content,
@@ -114,7 +105,7 @@ class MessageContent extends Component {
 
     handleOnEditFormSubmit = (event) => {
         event.preventDefault(); 
-        this.hideEditForm(); 
+        this.setState({is_show_edit_form: !this.state.is_show_edit_form})
         this.props.handleOnUpdateMessage(this.state.update_message); 
     }
 
@@ -168,7 +159,7 @@ class MessageContent extends Component {
                     <form className="edit_form" onSubmit={this.handleOnEditFormSubmit}>
                         <textarea onChange={(event) => this.handleEditFormOnChange(event.target)} name="edit_textarea" defaultValue={messages.message}></textarea>
                         <button type="submit">Update Message</button>
-                        <button onClick={() => this.hideEditForm()} type="button">Cancel</button>
+                        <button onClick={() => this.setState({is_show_edit_form: !this.state.is_show_edit_form})} type="button">Cancel</button>
                     </form>
                 }
                 { (is_show_comment_form) &&
@@ -191,7 +182,7 @@ class MessageContent extends Component {
                 }
                 <DeleteCommentModal
                     is_show={is_show_delete_comment_modal}
-                    closeDeleteCommentModal={this.closeDeleteCommentModal}
+                    toggleShowModal={() => toggleShowModal(this, "is_show_delete_comment_modal", false)}
                     delete_comment_by_id={delete_comment_by_id}
                     handleOnDeleteComment={this.handleOnDeleteComment}
                 >

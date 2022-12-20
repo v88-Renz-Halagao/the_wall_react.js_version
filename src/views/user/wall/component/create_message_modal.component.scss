@@ -47,6 +47,12 @@ div#create_message_modal{
                     font: normal 400 16px/24px 'Poppins';
                     padding: 7px 23px;
                 }
+                button[type=submit]{
+                    color: #FFFFFF;
+                    font: normal 500 16px/24px 'Poppins';
+                    padding: 7px 34px;
+                    text-align: center;
+                }
             }
         }
     }

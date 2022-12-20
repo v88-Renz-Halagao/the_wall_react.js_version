@@ -36,12 +36,6 @@ class CommentContent extends Component {
         });
     }
 
-    hideEditForm = () => {
-        this.setState({
-            is_show_edit_comment_form: !this.state.is_show_edit_comment_form
-        });
-    }
-
     handleEditCommentOnChange = (textarea_edit) => {
         this.setState({
             update_comment: {
@@ -53,7 +47,7 @@ class CommentContent extends Component {
 
     handleOnEditCommentSubmit = (event) => {
         event.preventDefault(); 
-        this.hideEditForm();
+        this.setState({is_show_edit_comment_form: !this.state.is_show_edit_comment_form})
         this.props.handleOnUpdateComment(this.state.update_comment, this.state.message_id);   
     }
 
@@ -91,7 +85,7 @@ class CommentContent extends Component {
                     <form className="edit_form" onSubmit={this.handleOnEditCommentSubmit}>
                         <textarea onChange={(event) => this.handleEditCommentOnChange(event.target)} name="edit_textarea" defaultValue={comment.comment}></textarea>
                         <button type="submit">Update Comment</button>
-                        <button onClick={() => this.hideEditForm()} type="button">Cancel</button>
+                        <button onClick={() => this.setState({is_show_edit_comment_form: !this.state.is_show_edit_comment_form})} type="button">Cancel</button>
                     </form>
                 }
            </li>

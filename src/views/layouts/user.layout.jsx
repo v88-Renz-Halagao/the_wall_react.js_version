@@ -7,6 +7,13 @@ import Login from "../user/login/login";
 import Signup from "../user/signup/signup";
 import Wall from "../user/wall/wall";
 
+/** 
+* @class 
+* @extends Component
+* This component class is being called on the /index.js <br>
+* This class is about routes of each the wall page.<br>
+* Last Updated Date: December 20, 2022 
+*/
 class UserLayout extends Component {
     render() { 
         return (

@@ -59,8 +59,8 @@ section{
                 color: #E1554C;
                 font: normal 300 14px/21px 'Poppins';
                 text-align: left;
-            }
-            span#agreement_info{
+            } 
+            p#agreement_info{
                 color: #152C61; 
                 font: normal 300 16px/24px 'Poppins';
                 margin-top: 30px;
@@ -76,7 +76,7 @@ section{
                 margin: 35px auto 35px auto;
                 padding: 15px 46px;
             }
-            span{
+            p{
                 color: rgba(0, 0, 0, 0.2);
                 font: normal 400 16px/22px 'Poppins';
                 letter-spacing: 0.03em;
@@ -84,7 +84,9 @@ section{
                 width: 100%;
                 a{
                     color: #2c6bff;
-                    text-decoration: none;
+                    font: normal 400 16px/22px 'Poppins';
+                    letter-spacing: 0.03em;
+                    text-decoration: none; 
                 }
             }
         }

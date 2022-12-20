@@ -61,7 +61,8 @@ section{
             span.error{
                 color: #E1554C;
                 font: normal 300 14px/21px 'Poppins';
-                text-align: left;
+                text-align: left; 
+                width: 100%;
             }
             button[type=submit]{
                 background-color: #2c6bff;
@@ -72,14 +73,17 @@ section{
                 margin: 35px auto 35px auto;
                 padding: 15px 46px;
             }
-            span{
+            p{
                 color: rgba(0, 0, 0, 0.2);
                 font: normal 400 16px/22px 'Poppins';
                 letter-spacing: 0.03em;
                 text-align: center;
                 width: 100%;
                 a{
-                    color: #2c6bff;
+                    color: #2c6bff; 
+                    font: normal 400 16px/22px 'Poppins';
+                    letter-spacing: 0.03em;
+                    text-align: center;
                     text-decoration: none;
                 }
             }

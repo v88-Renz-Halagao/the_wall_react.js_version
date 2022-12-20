@@ -48,7 +48,7 @@ class CreateMessageModal extends Component {
     }
     
     closeCreateModal = () =>{
-        this.props.closeCreateMessageModal();
+        this.props.toggleShowModal();
         this.resetCreateMessageForm();
     }
 

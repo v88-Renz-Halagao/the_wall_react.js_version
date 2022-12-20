@@ -87,14 +87,9 @@ class Wall extends Component {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
                 if(message.id === updated_message.id){
-                    return {
-                        ...message,
-                        message: updated_message.message
-                    }
+                    return {...message, message: updated_message.message}
                 }
-                else{
-                    return message;
-                }
+                return message;
             })
         }));
     }
@@ -132,14 +127,9 @@ class Wall extends Component {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
                 if(message.id === message_id){
-                    return {
-                        ...message,
-                        comments: [comment, ...message.comments]
-                    }
+                    return {...message, comments: [comment, ...message.comments]}
                 }
-                else{
-                    return message;
-                }
+                return message;
             })
         }));
     }
@@ -159,14 +149,9 @@ class Wall extends Component {
             messages_content: prevState.messages_content.map((message) => {
                 if(message.id === message_id){
                     const updated_comments = message.comments.filter(comments => comments.id !== comment_id);
-                    return {
-                        ...message,
-                        comments: updated_comments
-                    }   
+                    return {...message, comments: updated_comments}   
                 }
-                else{
-                    return message;
-                }
+                return message;
             })
         }));
     }
@@ -185,13 +170,13 @@ class Wall extends Component {
         this.setState(prevState => ({
             messages_content: prevState.messages_content.map((message) => {
             if (message.id === message_id) {
-              let comments = message.comments.map((comment) => {
-                    if (comment.id === updated_comment.id) {
-                        return { ...comment, comment: updated_comment.comment };
-                    }
-                    return comment;
-              });
-              return { ...message, comments: comments};
+                let comments = message.comments.map((comment) => {
+                        if (comment.id === updated_comment.id) {
+                            return { ...comment, comment: updated_comment.comment };
+                        }
+                        return comment;
+                });
+                return { ...message, comments: comments};
             }
             return message;
           })

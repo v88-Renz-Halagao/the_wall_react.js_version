@@ -43,7 +43,6 @@ class MessageContent extends Component {
 
     componentDidUpdate(prevProps){
         if(this.props.messages.id !== prevProps.messages.id){
-            console.log(this.props.messages.comments);
             this.setState({
                 is_show_comment_form: false,
                 message_id: this.props.messages.id,

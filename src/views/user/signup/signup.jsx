@@ -82,6 +82,7 @@ class Signup extends Component {
     * @memberOf Signup page
     * @author Renz
     */
+   /* NEED TO REDO THIS */
     validateSignUp = () => {
         let error = this.state.signup_error;
         if (error.email === null && error.password === null && error.confirm_password === null) {

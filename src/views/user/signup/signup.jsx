@@ -35,7 +35,7 @@ class Signup extends Component {
                 confirm_password: null,
             } 
         }
-    } 
+    }
 
     /**
     * DOCU: This function will handle the input change, updates the state's value <br>
@@ -75,22 +75,6 @@ class Signup extends Component {
     }
 
     /**
-    * DOCU: This function will validate the inputs has still errors. <br>
-    * Triggered: render() <br>
-    * Last Updated Date: December 20, 2022
-    * @function
-    * @memberOf Signup page
-    * @author Renz
-    */
-   /* NEED TO REDO THIS */
-    validateSignUp = () => {
-        let error = this.state.signup_error;
-        if (error.email === null && error.password === null && error.confirm_password === null) {
-            window.location.href="/wall";
-        }
-    } 
-
-    /**
     * DOCU: This function will validate and submits signup form <br>
     * Triggered: render() <br>
     * Last Updated Date: December 20, 2022
@@ -104,25 +88,31 @@ class Signup extends Component {
         event.preventDefault();
         let {email_format, signup_input} = this.state;
 
+        /* This will check if email in sign up is valid. */
         if(!email_format.test(String(signup_input.email).toLowerCase())){
             this.handleInputError("email", "Email is Invalid");
         }
         else{
-            this.handleInputError("email", null);
-            this.validateSignUp();
+            this.handleInputError("email", "");
         } 
 
+        /* This will check if confirm password matches on password in sign up. */
         if(signup_input.password !== signup_input.confirm_password){
             this.handleInputError("confirm_password", "Passwords does not match");
         }
         else{
-            this.handleInputError("confirm_password", null);
-            this.validateSignUp();
-        }
+            this.handleInputError("confirm_password", "");
+        }  
     }
 
     render() {
         let {signup_error} = this.state;
+        
+        /* This will check if sign up is valid. */
+        if (signup_error.email === "" && signup_error.password === null && signup_error.confirm_password === "") {
+            window.location.href = "/wall";
+        }
+
         return (
             <section>
                 <div id="form_container">

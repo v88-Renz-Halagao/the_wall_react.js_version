@@ -17,7 +17,7 @@ import { messagesContent } from "./message_content_prototype_data";
 import "./wall.scss";
 
 /* Images */
-import Empty_post from "../../../assets/images/empty_post.png";
+import Empty_post from "../../../assets/images/empty_post.png"; 
 
 /** 
 * @class 
@@ -33,7 +33,7 @@ class Wall extends Component {
         this.state = {
             total_messages: 0,
             messages_content: messagesContent,
-            message_id: "m-"+generateId(),
+            message_id: generateId(),
             delete_message_by_id: 0,
             is_show_create_modal: false,
             is_show_delete_message_modal: false
@@ -58,7 +58,7 @@ class Wall extends Component {
 
     /**
     * DOCU: This function will add message, sets the id of message and updates the state's value <br>
-    * Triggered: render() <br>
+    * Triggered: render() <br> 
     * Last Updated Date: December 20, 2022
     * @function
     * @memberOf Wall page
@@ -69,7 +69,7 @@ class Wall extends Component {
         this.setState(prevState => ({
             messages_content: [message, ...prevState.messages_content],
             total_messages: this.state.messages_content.length+1, 
-            message_id: "m-"+generateId(), 
+            message_id: generateId(), 
             is_show_create_modal: false
         })); 
     }
@@ -84,14 +84,16 @@ class Wall extends Component {
     * @author Renz
     */
     handleOnUpdateMessage = (updated_message) => {
-        this.setState(prevState => ({
-            messages_content: prevState.messages_content.map((message) => {
-                if(message.id === updated_message.id){
-                    return {...message, message: updated_message.message}
-                }
-                return message;
-            })
-        }));
+        let { messages_content } = this.state;
+        
+        messages_content.map( message_item =>  {
+            if(message_item.id === updated_message.id){
+                return message_item.message = updated_message.message;
+            }
+            return message_item;
+        });
+        
+        this.setState({messages_content});
     }
 
     /**
@@ -145,15 +147,17 @@ class Wall extends Component {
     * @author Renz
     */
     handleOnDeleteCommentOfMessage = (comment_id, message_id) => {
-        this.setState(prevState => ({
-            messages_content: prevState.messages_content.map((message) => {
-                if(message.id === message_id){
-                    const updated_comments = message.comments.filter(comments => comments.id !== comment_id);
-                    return {...message, comments: updated_comments}   
-                }
-                return message;
-            })
-        }));
+        let { messages_content } = this.state;
+        
+        messages_content.map( message_item =>  {
+            if(message_item.id === message_id){
+                const updated_comments = message_item.comments.filter(comments => comments.id !== comment_id);
+                return message_item.comments = updated_comments;
+            }
+            return message_item;
+        });
+        
+        this.setState({messages_content});
     }
 
     /**
@@ -167,20 +171,23 @@ class Wall extends Component {
     * @author Renz
     */
     handleOnUpdateComment = (updated_comment, message_id) => {
-        this.setState(prevState => ({
-            messages_content: prevState.messages_content.map((message) => {
-            if (message.id === message_id) {
-                let comments = message.comments.map((comment) => {
-                        if (comment.id === updated_comment.id) {
-                            return { ...comment, comment: updated_comment.comment };
+        let { messages_content } = this.state;
+        
+        messages_content.map( message_item =>  {
+            if(message_item.id === message_id){
+                let comments = message_item.comments.map((comment_item) => {
+                        if (comment_item.id === updated_comment.id) {
+                            return comment_item.comment = updated_comment.comment;
                         }
-                        return comment;
+                        return comment_item;
                 });
-                return { ...message, comments: comments};
+                return message_item = comments;
             }
-            return message;
-          })
-        }));
+            return message_item;
+        });
+        
+        this.setState({messages_content});
+
     }
 
     render() {

@@ -124,7 +124,7 @@ class Signup extends Component {
                             type="text"
                             id="email"
                             name="email"
-                            className={`form-control ${ (signup_error.email) ? "input_error" : "" }`}
+                            className={`form-control ${ (signup_error.email) && "input_error" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(signup_error.email) &&
@@ -135,7 +135,7 @@ class Signup extends Component {
                             type="password"
                             id="password"
                             name="password"
-                            className={`form-control ${ (signup_error.password) ? "input_error" : "" }`}
+                            className={`form-control ${ (signup_error.password) && "input_error" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(signup_error.password) &&
@@ -146,7 +146,7 @@ class Signup extends Component {
                             type="password"
                             id="confirm_password"
                             name="confirm_password"
-                            className={`form-control ${ (signup_error.confirm_password) ? "input_error" : "" }`}
+                            className={`form-control ${ (signup_error.confirm_password) && "input_error" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(signup_error.confirm_password) &&

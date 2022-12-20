@@ -25,7 +25,7 @@ class MessageContent extends Component {
         this.state = {
             is_show_comment_form: false,
             message_id: props.messages.id,
-            comment_id: "c-"+generateId(),
+            comment_id: generateId(),
             comment_content: {
                 id: null,
                 comment: ""
@@ -151,7 +151,7 @@ class MessageContent extends Component {
         let comment_details = this.state;
         this.props.handleOnAddComment(comment_details.comment_content, comment_details.message_id);
         this.setState(prevState => ({
-            comment_id: "c-"+generateId(),
+            comment_id: generateId(),
             comment_content: {
                 ...this.state.comment_content,
                 id: null,
@@ -202,7 +202,7 @@ class MessageContent extends Component {
                         <p>{messages.message}</p>
                         <ul className="action_list">
                             <li>
-                                <button className={`comment_button ${(messages.comments.length !== 0) ? "has_comment" : "" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(messages.id)}>
+                                <button className={`comment_button ${(messages.comments.length !== 0) && "has_comment" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(messages.id)}>
                                     <span className="action_icon"></span>
                                     <span className="comment_count">{messages.comments.length}</span>
                                     Comment
@@ -239,7 +239,7 @@ class MessageContent extends Component {
                 { (is_show_comment_form) &&
                     <form className="post_comment_form" method="post" onSubmit={this.handleOnFormSubmit}>
                         <textarea name="textarea_comment" value={comment_content.comment} onChange={(event) => this.handleTextareaOnChange(event.target)}></textarea>
-                        <button className={`${(comment_content.comment === "")? "disable disable_button" : "" }`} type="submit">Post Comment</button>
+                        <button className={`${(comment_content.comment === "") && "disable disable_button" }`} type="submit">Post Comment</button>
                     </form>
                 }
                 { (is_show_comment_form && messages.comments.length !== 0) &&

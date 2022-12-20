@@ -85,7 +85,7 @@ class Login extends Component {
                             type="email"
                             id="email"
                             name="email"
-                            className={`form-control ${ (login_error) ? "input_error" : "" }`}
+                            className={`form-control ${ (login_error) && "input_error" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(login_error) &&
@@ -97,7 +97,7 @@ class Login extends Component {
                             type="password"
                             id="password"
                             name="password"
-                            className={`form-control ${ (login_error) ? "input_error" : "" }`}
+                            className={`form-control ${ (login_error) && "input_error" }`}
                             onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         {(login_error) &&

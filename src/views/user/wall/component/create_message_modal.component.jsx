@@ -118,8 +118,8 @@ class CreateMessageModal extends Component {
                 <Modal.Footer>
                     <Button onClick={() => this.closeCreateModal()} type="button">Cancel</Button>
                     <Button
-                        className={`${(message_content.message === "") ? "disabled disable_button" : "" }`} 
-                        type="submit">Post Messages</Button>
+                        className={`${(message_content.message === "") && "disabled disable_button" }`} 
+                        type="submit">Post Messages</Button> 
                 </Modal.Footer>
                 </form>
             </Modal>

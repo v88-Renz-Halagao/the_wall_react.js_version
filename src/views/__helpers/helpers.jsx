@@ -5,9 +5,10 @@ export const toggleShowModal = (component_selector, modal_name, is_show) => {
     return component_selector.setState({ [modal_name]: is_show });
 }
 
-/*  DOCU: This will generate id for creating messages and comments  
+/*  DOCU: This will generate unique id for creating messages and comments  
     Triggered: inside render() 
     Owner: Renz */
 export const generateId = () => {
-    return new Date().getDay() +""+ Math.floor(Math.random() * (100 - 0 + 1) + 0).toString(); 
+    let today = new Date();
+    return today.getDay()+""+today.getSeconds()+""+ Math.floor(Math.random() * (100 - 0 + 1) + 0).toString();
 }

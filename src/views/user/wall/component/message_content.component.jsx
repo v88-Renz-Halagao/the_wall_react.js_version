@@ -26,7 +26,6 @@ class MessageContent extends Component {
             is_show_comment_form: false,
             message_id: props.messages.id,
             comment_id: "c-"+generateId(),
-            total_comment: props.messages.comments.length,
             comment_content: {
                 id: null,
                 comment: ""
@@ -46,8 +45,7 @@ class MessageContent extends Component {
             this.setState({
                 is_show_comment_form: false,
                 message_id: this.props.messages.id,
-                total_comment: this.props.messages.comments.length,
-            });
+            }); 
         }
     }
 
@@ -154,7 +152,6 @@ class MessageContent extends Component {
         this.props.handleOnAddComment(comment_details.comment_content, comment_details.message_id);
         this.setState(prevState => ({
             comment_id: "c-"+generateId(),
-            total_comment: this.state.total_comment+1,
             comment_content: {
                 ...this.state.comment_content,
                 id: null,
@@ -191,14 +188,13 @@ class MessageContent extends Component {
         this.props.handleOnDeleteCommentOfMessage(comment_id, this.state.message_id); 
         this.setState({
             delete_comment_by_id: 0,
-            total_comment: this.state.total_comment-1,
             is_show_delete_comment_modal: false
         });
     }
 
     render() {
         let {messages, showDeleteMessageModal, handleOnUpdateComment} = this.props; 
-        let {is_show_comment_form, total_comment, comment_content, is_show_edit_form, is_show_delete_comment_modal, delete_comment_by_id} = this.state;  
+        let {is_show_comment_form, comment_content, is_show_edit_form, is_show_delete_comment_modal, delete_comment_by_id} = this.state;  
         return (
            <li className="message_item" id={messages.id}>
                 { (is_show_edit_form === false) &&
@@ -206,9 +202,9 @@ class MessageContent extends Component {
                         <p>{messages.message}</p>
                         <ul className="action_list">
                             <li>
-                                <button className={`comment_button ${(total_comment !== 0) ? "has_comment" : "" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(messages.id)}>
+                                <button className={`comment_button ${(messages.comments.length !== 0) ? "has_comment" : "" }`} id={messages.id} type="button" onClick={(event) => this.toggleCommentForm(messages.id)}>
                                     <span className="action_icon"></span>
-                                    <span className="comment_count">{total_comment}</span>
+                                    <span className="comment_count">{messages.comments.length}</span>
                                     Comment
                                 </button>
                             </li>
@@ -246,7 +242,7 @@ class MessageContent extends Component {
                         <button className={`${(comment_content.comment === "")? "disable disable_button" : "" }`} type="submit">Post Comment</button>
                     </form>
                 }
-                { (is_show_comment_form && total_comment !== 0) &&
+                { (is_show_comment_form && messages.comments.length !== 0) &&
                     <ul className="comment_container_list">
                         {messages.comments.map((comment) => (
                             <CommentContent 

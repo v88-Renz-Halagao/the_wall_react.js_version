@@ -1,10 +1,8 @@
 /* React */
-import React, { Component } from "react";
-import { Link } from  "react-router-dom";
-
+import React, { Component }         from "react";
+import { Link }                     from  "react-router-dom";
 /* CSS */
 import "./login.scss";
-
 /* Images */
 import Image_for_right_container from "../../../assets/images/Group_2018.png";
 
